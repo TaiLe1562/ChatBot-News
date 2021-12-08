@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Chatbot</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+            <style type="text/css">
+            .fixed-panel {
+                min-height: 500px;
+                max-height: 500px;
+                background-color: #19313c;
+                color: white;
+                overflow: auto;
+            }
+            .media-list {
+                overflow: auto;
+                clear: both;
+                display: table;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                word-break: normal;
+                line-break: strict;
+            }
+            .panel {
+                margin-bottom: 20px;
+                background-color: #fff;
+                border: 6px solid transparent;
+                border-radius: 25px;
+                -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+                box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            }
+            .panel-info {
+                border-color: #0c2735;
+                max-width: 500px;
+            }
+            .panel-info>.panel-heading {
+                color: white;
+                background-color: #0c2735;
+                border-color: #0c2735;
+            }
+            .panel-footer {
+                padding: 10px 15px;
+                background-color: #0c2735;
+                border-top: 1px solid #0c2735;
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px
+            }
+             body {
+                background: rgb(96,143,149); /* Old browsers */
+                background: -moz-linear-gradient(-45deg, rgba(96,143,149,1) 0%, rgba(0,133,136,1) 9%, rgba(12,36,73,1) 52%, rgba(26,30,59,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(-45deg, rgba(96,143,149,1) 0%,rgba(0,133,136,1) 9%,rgba(12,36,73,1) 52%,rgba(26,30,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(135deg, rgba(96,143,149,1) 0%,rgba(0,133,136,1) 9%,rgba(12,36,73,1) 52%,rgba(26,30,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#608f95', endColorstr='#1a1e3b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+            }
+            .section {
+                width: 100%;
+                float: left;
+            }
+            .top-header {
+                padding: 8.5px 0;
+                border-bottom: 1px solid #e5e5e5;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div>
+        <header class="section top-header" data-campaign="Header" >
+            <div>
+                <div class="container " style="background: white">
+                    <a href="/" data-medium="Logo" class="logo" title="VnExpress - Báo tiếng Việt nhiều người xem nhất" >
+                    <img src="https://s1.vnecdn.net/vnexpress/restruct/i/v485/v2_2019/pc/graphics/logo.svg" alt="VnExpress - Bao tieng Viet nhieu nguoi xem nhat">
+                    </a>
+                    <span class="time-now" style="margin-left: 20px" >Thứ bảy, 27/11/2021</span>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div>
+         <div class="container background-color: rgb(255,0,255);">
+             <div class="row">
+                <h2 class="text-center" style="margin-top: 50px"><font color="white"> ChatBot!!! </font></h2>
+                 ​
+                 <div class="col-md-4 col-md-offset-4">
+                     <div id="chatPanel" class="panel panel-info">
+                         <div class="panel-heading">
+                                <strong><span class="glyphicon glyphicon-globe"></span> Talk with Me !!! (You: Green / Bot: White) </strong>
+                            </div>
+                         <div class="panel-body fixed-panel" id="messages">
+                            <div class="media-list">
+                                <p tag="resend">
+                                    Chào bạn! </br>
+                                    Tôi là Bot tin tức! </br>
+                                    Bạn có thể cho tôi biết bạn cần biết về tin tức gì?
+                                </p>
+                            </div>
+                        </div>
+                         <div class="panel-footer">
+                            <form method="post" id="chatbot-form">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter Message" name="messageText" id="mytext" autofocus/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button" id="send" value="Send">Send</button>
+                                        <button class="btn btn-info" type="button" id="delete" value="Delete">Delete</button>
+                                    </span>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+
+    <div class="copyright width_common" style="background: white">
+        <a title="VnExpress - Báo tiếng Việt nhiều người xem nhất" href="https://vnexpress.net/" data-medium="Logo" class="logo_ft" onclick="trackingLogoHome('logo-footer', this.href)" data-itm-source="#vn_source=Folder&amp;vn_campaign=Footer&amp;vn_medium=Logo&amp;vn_term=Desktop" data-itm-added="1"><img src="https://s1.vnecdn.net/vnexpress/restruct/i/v485/v2_2019/pc/graphics/logo.svg" alt="VnExpress - Bao tieng Viet nhieu nguoi xem nhat"></a>
+        <span></span>
+    </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            var exports = {};
+        </script>
+        <script src="https://unpkg.com/speech-to-text@0.7.4/lib/index.js"></script>
+
+    </body>
+
+    <script>
+        function add_messages(news, role) {
+            let data = $("#messages").html();
+            let messages = "";
+            let direction = "";
+            if (role != "bot") {
+                direction = "right"
+                message =
+                `
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="media">
+                                <div tag="resend" style = "text-align:right; color : #2EFE2E" class="media-body" class="${direction}">${news}<hr/></div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+            else{
+                message =
+                `
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="media">
+                                <div style = "color : white" class="media-body">
+                                    <p class="${direction}">${news.title}</p>
+                                    <a href="${news.link}">${news.link}</a><hr/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+            $("#messages").html(data + message);
+        }
+        function get_data(theloai){
+            var form = new FormData();
+                form.append("news_type", theloai);
+                var settings = {
+                    "url": "http://localhost:7699/myfilm",
+                    "method": "POST",
+                    "timeout": 0,
+                    "processData": false,
+                    "mimeType": "multipart/form-data",
+                    "contentType": false,
+                    "data": form
+                };
+
+                $.ajax(settings).done(function (response) {
+                    let json_data = JSON.parse(response);
+                    console.log(response);
+                    for (let i =0;i < json_data.length;i++){
+                        let film = json_data[i];
+                        add_messages(film,"bot")
+                    }
+                }).fail(function (response) {
+                    console.log(response);
+                });
+        }
+        $(document).ready(function () {
+            $("#delete").on("click", function () {
+                $("#messages").html("");
+            })
+            $(document).on('click',"p[tag='resend']", function () {
+                let data = $(this).text().replace("/","");
+                add_messages(data,"user");
+                get_data(data)
+            });
+            $("#send").on("click", function () {
+                let text = $("#mytext").val();
+                add_messages(text,"user");
+                get_data(text)
+            });
+
+            $('#chatbot-form').submit(function(e) {
+                e.preventDefault();
+                var message = $('#mytext').val();
+                $(".media-list").append('<li class="media"><div class="media-body"><div class="media"><div style = "text-align:right; color : #2EFE2E" class="media-body">' + message + '<hr/></div></div></div></li>');
+
+                $.ajax({
+                    type: "POST",
+                    url: "/ask",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#mytext').val('');
+                        var answer = response.answer;
+                        const chatPanel = document.getElementById("chatPanel");
+                        $(".media-list").append('<li class="media"><div class="media-body"><div class="media"><div style = "color : white" class="media-body">' + answer + '<hr/></div></div></div></li>');
+                        $(".fixed-panel").stop().animate({ scrollTop: $(".fixed-panel")[0].scrollHeight}, 1000);
+
+                        msg.text = answer;
+                        speechSynthesis.speak(msg);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+     </script>
+
+</html>
